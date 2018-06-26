@@ -1,30 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>chrismess - a whole mess o' Chrisses</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="index.css" />
-
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Chrismess - A whole mess o' Chrisses</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="index.css" />
 </head>
 <body>
-    <h1>Chrismess</h1>
+  <h1>Chrismess</h1>
 
-    <button>Update Heading</button>
+  <form id="flickForm">
+    <input
+      type="text"
+      name="flickName"
+      placeholder="Enter a flick"
+      autofocus
+    >
+    <button type="submit">Add Flick</button>
+  </form>
 
-    <h1 id = "Pratt">Chris</h1>
+  <ul id="flicks"></ul>
 
-    <button>Update Heading #2</button>
-
-    <script src="index.js"></script> 
-    
-    <form action="index.html"> 
-        Change h1 header: <br>
-        <input type="text" name="firstname"><br>
-        <input type="submit" value="submit">
-
-    </form>
-
+  <script src="index.js"></script>
 </body>
-</html> 
+</html>
