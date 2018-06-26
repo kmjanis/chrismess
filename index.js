@@ -1,17 +1,15 @@
-console.log('It works!')
-console.warn('Omar coming')
-console.error('oh snap')
+const form = document.querySelector('form#flickForm')
 
-const button = document.querySelector('button')
+const updateHeading = function(ev) {
+  ev.preventDefault()
+  const f = ev.target
 
-const newHeader = function() {
-const heading = document.querySelector('h1')
-    heading.textContent = 'Hey look I did it!'
+  const flickName = f.flickName.value
+
+  const list = document.querySelector('#flicks')
+  list.innerHTML += `<li>${flickName}</li>`
+
+  f.reset()
 }
-button.onclick = newHeader
 
-const changeHeader = function() {
-    const heading = document.querySelector('Pratt')
-    heading.textContent = "Chris Pratt is the best Chris"
-}
-button.addEventListener('click', updateText = 'Chris Pratt is the Best Chris')
+form.addEventListener('submit', updateHeading)
