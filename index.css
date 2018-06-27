@@ -9,3 +9,16 @@ button[type="submit"] {
     background-color: navy;
 
 }
+
+input {
+    background-color: lime;
+    color: darkmagenta;
+}
+
+h1 {
+    color: orangered;
+}
+
+html{
+    background-color:lightskyblue;
+}
