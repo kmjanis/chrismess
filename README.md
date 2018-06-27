@@ -2,7 +2,7 @@
 
 * The first project for Xtern bootcamp 2018 session 3.
 
-##Day 2 Homework
+## Day 2 Homework
 
 * Give the function 'Update Heading' a more accurate name
 * Add a second field to the form

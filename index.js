@@ -1,6 +1,6 @@
 const form = document.querySelector('form#flickForm')
 
-const updateHeading = function(ev) {
+const addFlick = function(ev) {
   ev.preventDefault()
   const f = ev.target
 
@@ -14,4 +14,4 @@ const updateHeading = function(ev) {
   f.reset()
 }
 
-form.addEventListener('submit', updateHeading)
+form.addEventListener('submit', addFlick)
