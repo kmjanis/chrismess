@@ -3,3 +3,9 @@
 body {
   font-family: 'Lato', Helvetica, Arial, sans-serif;
 }
+
+button[type="submit"] {
+    color: red;
+    background-color: navy;
+
+}
