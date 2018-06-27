@@ -11,19 +11,23 @@
   <h1>Chrismess</h1>
 
   <form id="flickForm">
-    <div style ="float:letf;">
+    <div style ="float:left;">
         <input
         type="text"
         name="flickName"
         placeholder="Enter a flick"
+        onsubmit="submitBoth(); return false;"
         autofocus
         >
-        <input type ="text"
+    </div>
+</form>
+<form id="moreChrisses">
+       <input type ="text"
         name="chrisName"
         placeholder="Enter a Chris"
-    </div>
-    <button type="submit">Add Flick</button>
-  </form>
+        onclick="submitForms(); return false;"
+</form>
+<button type="submit">Add Flick</button>
 
   <ul id="flicks"></ul>
 
