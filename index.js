@@ -5,8 +5,16 @@ const addFlick = function(ev) {
   const f = ev.target
 
   const flickName = f.flickName.value
+  const spanFlick = document.createElement('span')
+  spanFlick.textContent = flickName
+
+  const chrisName = f.chrisName.value
+  const spanChris = document.createElement('span')
+  spanChris.textContent = chrisName
+
   const item = document.createElement('li')
-  item.textContent = flickName
+  item.appendChild(spanFlick)
+  item.appendChild(spanChris)
 
   const list = document.querySelector('#flicks')
   list.appendChild(item)
@@ -15,3 +23,4 @@ const addFlick = function(ev) {
 }
 
 form.addEventListener('submit', addFlick)
+
