@@ -7,7 +7,7 @@ class App {
       })
     }
   
-    renderProperty(name, value) {
+    renderProperty(name, value){
       const span = document.createElement('span')
       span.classList.add(name)
       span.textContent = value
@@ -44,9 +44,12 @@ class App {
       const list = document.querySelector('#flicks')
       list.appendChild(item)
   
+    array.push(item1, item2,...itemX)
+    
       f.reset()
       f.flickName.focus()
     }
   }
-  
+
+
   const app = new App()
