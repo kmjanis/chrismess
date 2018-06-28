@@ -1,7 +1,8 @@
 class App {
     constructor() {
-      const form = document.querySelector('form#flickForm')
+      const form = document.querySelector('form#flickForm') 
       form.addEventListener('submit', (ev) => {
+          
         ev.preventDefault()
         this.handleSubmit(ev)
       })
@@ -17,6 +18,14 @@ class App {
     renderItem(flick) {
       const item = document.createElement('li')
       item.classList.add('flick')
+
+      //deleteThis {
+          //document.getELemenetById('flicks')
+          //list.removeChild(list.childnodes)
+      //}
+
+      const list = document.getElementById('flicks');
+        list.removeChild(list.childNodes);
   
       // get the list of properties
       const properties = Object.keys(flick)
