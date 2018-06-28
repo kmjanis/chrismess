@@ -2,6 +2,7 @@ class App {
     constructor() {
       this.list = document.querySelector('#flicks')
       this.flicks = []
+      this.load
   
       const form = document.querySelector('form#flickForm')
       form.addEventListener('submit', (ev) => {
@@ -9,7 +10,17 @@ class App {
         this.handleSubmit(ev)
       })
     }
+
+    save() {
+        //store the flicks array in localStorage
+        localStorage.setItem('flicks',JSON.stringify(this.flicks))
+    }
   
+    load() {
+        const flicks = JSON.parse(localStorage.getItem('flicks'))
+        flicks.forEach(flick => this.addFlick(flick))
+    }
+    
     renderProperty(name, value) {
       const span = document.createElement('span')
       span.classList.add(name)
@@ -17,6 +28,13 @@ class App {
       return span
     }
   
+    //const testObject = {'one':1};
+    //localStorage.setItem(JSON.stringify(testObject));
+
+    //const retrieveObject = localStorage.getItem('testObject');
+    //console.log('retrieveObject', JSON.parse(retrievedObject));
+
+
     renderProperties(flick) {
       const div = document.createElement('div')
       div.classList.add('info')
@@ -81,6 +99,8 @@ class App {
     toggleFavorite(flick, item) {
       // update the UI and the array
       flick.favorite = item.classList.toggle('fav')
+
+      this.save()
     }
   
     removeFlick(flick, item) {
@@ -92,6 +112,21 @@ class App {
       this.flicks.splice(i, 1)
     }
   
+
+    addFlick(flick){
+        //keep marked as favorite
+        if (flick.favorite){
+            item.classList.add('fav')
+        }
+        this.flicks.push(flick)
+        this.save()
+        
+        const item = this.renderItem(flick)
+
+        //add it to the DOM
+        this.list.appendChild(item)
+    }
+    
     handleSubmit(ev) {
       const f = ev.target
   
@@ -100,13 +135,8 @@ class App {
         chris: f.chrisName.value,
         favorite: false,
       }
-  
-      this.flicks.push(flick)
-  
-      const item = this.renderItem(flick)
-  
-      this.list.appendChild(item)
-  
+
+  this.addFlick(flick)
       f.reset()
       f.flickName.focus()
     }
