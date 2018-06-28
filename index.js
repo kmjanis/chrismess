@@ -1,14 +1,17 @@
+
 class App {
     constructor() {
-      const form = document.querySelector('form#flickForm') 
+      this.list = document.querySelector('#flicks')
+      this.flicks = []
+  
+      const form = document.querySelector('form#flickForm')
       form.addEventListener('submit', (ev) => {
-          
         ev.preventDefault()
         this.handleSubmit(ev)
       })
     }
   
-    renderProperty(name, value){
+    renderProperty(name, value) {
       const span = document.createElement('span')
       span.classList.add(name)
       span.textContent = value
@@ -18,16 +21,7 @@ class App {
     renderItem(flick) {
       const item = document.createElement('li')
       item.classList.add('flick')
-
-      //deleteThis {
-          //document.getELemenetById('flicks')
-          //list.removeChild(list.childnodes)
-      //}
-
-     function deleteThis(){
-      const list = document.getElementById('flicks');
-        list.removeChild(list.childNodes);
-     }
+  
       // get the list of properties
       const properties = Object.keys(flick)
   
@@ -38,7 +32,17 @@ class App {
         item.appendChild(span)
       })
   
+      // add a delete button
+      const deleteButton = document.createElement('button')
+      deleteButton.textContent = 'delete'
+      deleteButton.addEventListener('click', () => this.removeFlick(item))
+      item.appendChild(deleteButton)
+  
       return item
+    }
+  
+    removeFlick(item) {
+      this.list.removeChild(item)
     }
   
     handleSubmit(ev) {
@@ -49,17 +53,15 @@ class App {
         chris: f.chrisName.value,
       }
   
+      this.flicks.push(flick)
+  
       const item = this.renderItem(flick)
   
-      const list = document.querySelector('#flicks')
-      list.appendChild(item)
+      this.list.appendChild(item)
   
-    array.push(item1, item2,...itemX)
-    
       f.reset()
       f.flickName.focus()
     }
   }
-
-
+  
   const app = new App()
