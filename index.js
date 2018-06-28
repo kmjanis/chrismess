@@ -2,7 +2,7 @@ class App {
     constructor() {
       this.list = document.querySelector('#flicks')
       this.flicks = []
-      this.load
+      this.load()
   
       const form = document.querySelector('form#flickForm')
       form.addEventListener('submit', (ev) => {
@@ -10,17 +10,18 @@ class App {
         this.handleSubmit(ev)
       })
     }
-
+  
     save() {
-        //store the flicks array in localStorage
-        localStorage.setItem('flicks',JSON.stringify(this.flicks))
+      // store the flicks array in localStorage
+      localStorage.setItem('flicks', JSON.stringify(this.flicks))
     }
   
     load() {
-        const flicks = JSON.parse(localStorage.getItem('flicks'))
-        flicks.forEach(flick => this.addFlick(flick))
+      const flicks = JSON.parse(localStorage.getItem('flicks'))
+  
+      flicks.forEach(flick => this.addFlick(flick))
     }
-    
+  
     renderProperty(name, value) {
       const span = document.createElement('span')
       span.classList.add(name)
@@ -28,13 +29,6 @@ class App {
       return span
     }
   
-    //const testObject = {'one':1};
-    //localStorage.setItem(JSON.stringify(testObject));
-
-    //const retrieveObject = localStorage.getItem('testObject');
-    //console.log('retrieveObject', JSON.parse(retrievedObject));
-
-
     renderProperties(flick) {
       const div = document.createElement('div')
       div.classList.add('info')
@@ -59,7 +53,7 @@ class App {
       // add a delete button
       const deleteButton = document.createElement('button')
       deleteButton.classList.add('remove')
-      deleteButton.textContent = 'delete'
+      deleteButton.innerHTML = '<i class="far fa-trash-alt" title="remove flick"></i>'
       deleteButton
         .addEventListener(
           'click',
@@ -70,7 +64,7 @@ class App {
       // add a favorite button
       const favButton = document.createElement('button')
       favButton.classList.add('fav')
-      favButton.textContent = 'favorite'
+      favButton.innerHTML = '<i class="fas fa-star" title="toggle favorite"></i>'
       favButton
         .addEventListener(
           'click',
@@ -99,7 +93,8 @@ class App {
     toggleFavorite(flick, item) {
       // update the UI and the array
       flick.favorite = item.classList.toggle('fav')
-
+  
+      //update localStorage
       this.save()
     }
   
@@ -110,23 +105,28 @@ class App {
       // remove it from the array
       const i = this.flicks.indexOf(flick)
       this.flicks.splice(i, 1)
+  
+      // update localStorage
+      this.save()
     }
   
-
-    addFlick(flick){
-        //keep marked as favorite
-        if (flick.favorite){
-            item.classList.add('fav')
-        }
-        this.flicks.push(flick)
-        this.save()
-        
-        const item = this.renderItem(flick)
-
-        //add it to the DOM
-        this.list.appendChild(item)
+    addFlick(flick) {
+      // add it to the array
+      this.flicks.push(flick)
+      this.save()
+  
+  
+      const item = this.renderItem(flick)
+  
+      // mark it as a favorite, if applicable
+      if (flick.favorite) {
+        item.classList.add('fav')
+      }
+  
+      // add it to the DOM
+      this.list.appendChild(item)
     }
-    
+  
     handleSubmit(ev) {
       const f = ev.target
   
@@ -135,8 +135,9 @@ class App {
         chris: f.chrisName.value,
         favorite: false,
       }
-
-  this.addFlick(flick)
+  
+      this.addFlick(flick)
+  
       f.reset()
       f.flickName.focus()
     }
