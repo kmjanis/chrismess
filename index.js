@@ -24,9 +24,10 @@ class App {
           //list.removeChild(list.childnodes)
       //}
 
+     function deleteThis(){
       const list = document.getElementById('flicks');
         list.removeChild(list.childNodes);
-  
+     }
       // get the list of properties
       const properties = Object.keys(flick)
   
