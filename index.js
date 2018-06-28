@@ -37,12 +37,28 @@ class App {
       deleteButton.textContent = 'delete'
       deleteButton.addEventListener('click', () => this.removeFlick(item))
       item.appendChild(deleteButton)
+
+      const favButton = document.createElement('button')
+      favButton.textContent = 'favorite'
+      favButton
+        .addEventListener(
+            'click',
+            () => this.toggleFavorite(flick,item)
+        )
   
       return item
     }
   
-    removeFlick(item) {
+    toggleFavorite(flick,item){
+        flick.favorite = !flick.favorite
+    }
+
+    removeFlick(flick,item) {
       this.list.removeChild(item)
+    
+      const i = this.flicks.indexOf(flick)
+        //remove
+        this.flicks.splice(i,1)
     }
   
     handleSubmit(ev) {
@@ -51,6 +67,7 @@ class App {
       const flick = {
         name: f.flickName.value,
         chris: f.chrisName.value,
+        favorite: false,
       }
   
       this.flicks.push(flick)
