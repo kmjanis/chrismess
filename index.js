@@ -1,4 +1,3 @@
-
 class App {
     constructor() {
       this.list = document.querySelector('#flicks')
@@ -17,10 +16,22 @@ class App {
       span.textContent = value
       return span
     }
-
-    renderProperties(flick,item){
-        document.createElement('div')
-        div.classList.add('info')
+  
+    renderProperties(flick) {
+      const div = document.createElement('div')
+      div.classList.add('info')
+  
+      // get the list of properties
+      const properties = Object.keys(flick)
+  
+      // loop over each property
+      properties.forEach((propertyName) => {
+        // build a span
+        const span = this.renderProperty(propertyName, flick[propertyName])
+        div.appendChild(span)
+      })
+  
+      return div
     }
   
     renderActionButtons(flick, item) {
@@ -55,18 +66,10 @@ class App {
     renderItem(flick) {
       const item = document.createElement('li')
       item.classList.add('flick')
-
-      
   
-      // get the list of properties
-      const properties = Object.keys(flick)
-  
-      // loop over each property
-      properties.forEach((propertyName) => {
-        // build a span
-        const span = this.renderProperty(propertyName, flick[propertyName])
-        item.appendChild(span)
-      })
+      // add all the properties
+      const properties = this.renderProperties(flick)
+      item.appendChild(properties)
   
       // add action buttons
       const actions = this.renderActionButtons(flick, item)
